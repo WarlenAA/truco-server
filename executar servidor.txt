@@ -1,0 +1,20 @@
+**********LOCALMENTE:**********
+ 
+vá até o diretorio do truco_server e execute cmd;ex: 
+	cd C:\Users\warle\AndroidStudioProjects\Truco_cliente e servidor\truco_server
+
+iniciar servidor localmente: 
+
+npm start
+
+
+OBS: DESATIVAR O WINDOWS DEFENDER
+Painel de Controle\Todos os Itens do Painel de Controle\Windows Defender Firewall\Personalizar Configurações
+
+
+
+**********ONLINE:**********
+Servidor ja esta online nohttps://fly.io/dashboard/warlen-adriano/new-launch
+
+é so digitar o comando abaixo para subir atualizações quando fizer:
+flyctl deploy
