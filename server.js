@@ -94,6 +94,9 @@ let rooms = {};
 io.on('connection', (socket) => {
     console.log('Usuário conectado:', socket.id);
 
+     // Envia a quantidade de jogadores conectados para todos os clientes
+    io.emit('playerCount', Object.keys(io.sockets.sockets).length);
+
     // Handle player joining
     socket.on('joinGame', () => {
         let roomId = null;
@@ -291,13 +294,18 @@ io.on('connection', (socket) => {
                 scores: room.scores
             });
 
-            // Inicia nova rodada
-            startNewRound(socket.roomId);
+            // Inicia nova rodada com reset das condições
+            setTimeout(() => startNewRound(socket.roomId), 2000);
         }
     });
 
     // Handle disconnection
     socket.on('disconnect', () => {
+        console.log('Usuário desconectado:', socket.id);
+        
+        // Envia novamente a quantidade de jogadores conectados após a desconexão
+        io.emit('playerCount', Object.keys(io.sockets.sockets).length);
+
         if (socket.roomId && rooms[socket.roomId]) {
             io.to(socket.roomId).emit('playerLeft');
             delete rooms[socket.roomId];
